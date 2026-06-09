@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(netstat -ano)",
+      "Bash(findstr \":3000\")",
+      "Bash(npm run *)",
+      "Bash(Get-Content \"C:\\\\Users\\\\たそ\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users----Documents-appdev-claudecode-world-quiz-mapper\\\\3fb00421-a7a2-4810-a941-630c56189acb\\\\tasks\\\\bt2dtbj12.output\")",
+      "Bash(Select-Object -Last 15)",
+      "Bash(npm install *)",
+      "Bash(node -e \"require\\('firebase/app'\\); console.log\\('OK'\\)\")",
+      "Bash(npx next *)"
+    ]
+  }
+}
