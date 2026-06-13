@@ -1,6 +1,6 @@
 'use client';
 
-import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
+import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { ClearStatus } from '@/types';
 
 const GEO_URL =
@@ -29,7 +29,6 @@ export default function WorldMap({
         projectionConfig={{ scale: 150, center: [0, 10] }}
         style={{ width: '100%', height: 'auto' }}
       >
-        <ZoomableGroup zoom={1}>
           <Geographies geography={GEO_URL}>
             {({ geographies }) =>
               geographies.map((geo) => {
@@ -39,8 +38,14 @@ export default function WorldMap({
                 const fill = hasData ? STATUS_FILL[status] : '#D1D5DB';
 
                 return (
-                  <Geography
+                  <g
                     key={geo.rsmKey}
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      if (hasData) onCountryClick(numId);
+                    }}
+                  >
+                  <Geography
                     geography={geo}
                     onClick={() => hasData && onCountryClick(numId)}
                     style={{
@@ -65,11 +70,11 @@ export default function WorldMap({
                       },
                     }}
                   />
+                  </g>
                 );
               })
             }
           </Geographies>
-        </ZoomableGroup>
       </ComposableMap>
 
       {/* 凡例 */}

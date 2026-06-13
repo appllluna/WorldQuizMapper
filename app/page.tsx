@@ -11,6 +11,7 @@ import ProgressStats from '@/components/ui/ProgressStats';
 import BadgeList from '@/components/ui/BadgeList';
 import CountryList from '@/components/map/CountryList';
 import SiteHeader from '@/components/layout/SiteHeader';
+import ErrorBoundary from '@/components/ui/ErrorBoundary';
 
 // react-simple-maps はブラウザ専用のため動的インポート
 const WorldMap = dynamic(() => import('@/components/map/WorldMap'), { ssr: false });
@@ -76,11 +77,13 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
         {/* 左: 地図 + 国リスト */}
         <div className="space-y-6">
-          <WorldMap
-            getStatusByNumeric={getStatusByNumeric}
-            hasQuizByNumeric={hasQuizByNumeric}
-            onCountryClick={handleMapClick}
-          />
+          <ErrorBoundary label="WorldMap">
+            <WorldMap
+              getStatusByNumeric={getStatusByNumeric}
+              hasQuizByNumeric={hasQuizByNumeric}
+              onCountryClick={handleMapClick}
+            />
+          </ErrorBoundary>
           <CountryList
             countries={countries}
             getStatus={getCountryStatus}
