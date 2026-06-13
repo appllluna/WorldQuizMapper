@@ -12,6 +12,7 @@ import BadgeList from '@/components/ui/BadgeList';
 import CountryList from '@/components/map/CountryList';
 import SiteHeader from '@/components/layout/SiteHeader';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
+import DebugPanel from '@/components/debug/DebugPanel';
 
 // react-simple-maps はブラウザ専用のため動的インポート
 const WorldMap = dynamic(() => import('@/components/map/WorldMap'), { ssr: false });
@@ -62,7 +63,7 @@ export default function HomePage() {
   );
 
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-slate-50 pb-44">
       <SiteHeader
         right={
           <button
@@ -102,6 +103,8 @@ export default function HomePage() {
           <BadgeList badges={progress.badges} />
         </div>
       </div>
+
+      <DebugPanel />
 
       {/* クイズモーダル */}
       {selectedCountry && quizQuestions.length > 0 && (
